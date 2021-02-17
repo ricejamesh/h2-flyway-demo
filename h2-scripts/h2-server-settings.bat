@@ -1,8 +1,15 @@
-REM Make this script work first by finding the correct h2-jar-path
-REM Note the 'c:' before %HOMEPATH%, which is a subtle windows thing.
-REM
-REM The -? will show the h2 cli settings for running the server.
-set h2-jar-path=c:%HOMEPATH%\h2-2019-10-14\h2\bin
+@echo off
+REM Quick way to see the h2 command-line parameters.
 
-java -cp %h2-jar-path%\h2-1.4.200.jar org.h2.tools.Server -?
+REM The h2 jar is populated via the maven dependency plugin to the $project\h2 folder.
+REM This script will reference it via relative path links:  <this script location>\..\h2
+
+REM Location and name of the h2 jar.  Run mvn dependency:copy or mvn package to have the h2 jar copied to the h2 folder.
+set h2-jar-path=%~dp0\..\h2
+set h2-jar-name=h2-1.4.200.jar
+
+echo.
+
+java -cp %h2-jar-path%\%h2-jar-name% org.h2.tools.Server -?
+echo.
 
