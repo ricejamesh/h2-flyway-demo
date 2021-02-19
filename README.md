@@ -19,3 +19,11 @@ dependency plugin when you use `mvn dependency:copy` or `mvn package`
 The [./h2-scripts/h2-server.bat] file, will start the server.
 
 The unit test is using an in-memory h2 database by default and references a different db name.
+
+### H2 Connection Requirements
+To keep the database item names in lower-case, you MUST add the parameters 
+`DATABASE_TO_UPPER=false;DATABASE_TO_LOWER=true` to the connection URL.
+
+```
+jdbc:h2:tcp://localhost/h2-flyway-demo;DATABASE_TO_UPPER=false;DATABASE_TO_LOWER=true
+```

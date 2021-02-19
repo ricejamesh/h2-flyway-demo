@@ -13,14 +13,17 @@ public class H2FlywayDemoApplication  implements CommandLineRunner, ExitCodeGene
 
     private int exitCode = 0;
 
+    JobService jobService;
+
     public H2FlywayDemoApplication(JobService jobService) {
         this.jobService = jobService;
     }
 
-    JobService jobService;
-
     public static void main(String[] args) {
-        System.exit(SpringApplication.exit(SpringApplication.run(H2FlywayDemoApplication.class, args)));
+        System.exit(
+                SpringApplication.exit(
+                        SpringApplication.run(
+                                H2FlywayDemoApplication.class, args)));
     }
 
     @Override
